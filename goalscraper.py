@@ -138,7 +138,7 @@ def getGoals (rYear):
 
 						print "Scorer: " + scorer + " at minute " + str(gTime)
 
-						newGoal = Goal(scorer, gTime, homeTeam, False, hScore, aScore, rounds[r][0])
+						newGoal = Goal(scorer, gTime, homeTeam, False, aScore, hScore, rounds[r][0])
 						goalArray.append(newGoal)
 						aScore+=1
 

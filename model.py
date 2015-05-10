@@ -68,7 +68,8 @@ for goal in goalArray:
 		hs = 0.05*1
 
 	goalDiff = int(goal.ownTeamScore) - int(goal.oppTeamScore)
-	dbl_GD = goalDiff/10
+	dbl_GD = float(goalDiff)/10
+	print dbl_GD
 
 	if goalDiff >= 0:
 		gs = 0.6*(math.exp(-dbl_GD))
@@ -90,6 +91,10 @@ for goal in goalArray:
 		matches[goal.scorer] = max(2, matches[goal.scorer])
 	elif (goal.round == "R16"):
 		matches[goal.scorer] = max(1, matches[goal.scorer])
+
+	if (goal.scorer == 'Marcelo'):
+		print rs, ts, hs, gs
+		print dbl_GD
 
 for key in weightedScores.keys():
 	goals[key] = weightedScores[key]/goals[key]
