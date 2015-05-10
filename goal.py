@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 class Goal:
 
 	#instantiation with all necessary data
@@ -9,11 +12,3 @@ class Goal:
 		self.ownTeamScore = ownTeamScore
 		self.oppTeamScore = oppTeamScore
 		self.round = r
-	
-	#default constructor
-	def __init__(self):
-		self.scorer = ""
-		self.time = 0
-		self.team = ""
-		self.ownTeamScore = 0
-		self.oppTeamScore = 0
