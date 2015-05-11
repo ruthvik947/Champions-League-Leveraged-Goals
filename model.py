@@ -8,13 +8,14 @@ import math
 
 #USAGE: python model.py 
 
-roundScores = {'R16' : 0.825, 'Quarters' : 0.85, 'Semis' : 0.9, 'Finals' : 1}
+roundScores = {'R16 L1' : 0.75, 'R16 L2' : 0.75, 'Quarters L1' : 0.80, 'Quarters L2' : 0.80, 'Semis L1' : 0.875, 'Semis L2' : 0.875, 'Finals' : 1}
 timeScores = {}
 
 #set a default year and initialize necessary variables
 year = 2013
 
-strYear = raw_input("Enter a year between 2009 & 2013 that you would like to analyze (please try 2013): ")
+strYear = raw_input("Enter a year between 2010 & 2013 that you would like to analyze (please try 2013): ")
+print "Note: Results for any year except 2013 my not be perfectly accurate due to source website scraping constraints"
 year = int(strYear)
 
 weightedScores = {}
@@ -23,7 +24,7 @@ matches = {}
 best = {}
 
 #if incorrect input
-while (year < 2009 or year > 2013):
+while (year < 2010 or year > 2013):
 	strYear = raw_input("Invalid input. Try again: ")
 	year = int(strYear)
 
@@ -43,7 +44,7 @@ for goal in goalArray:
 
 for goal in goalArray:
 	#debug
-	#if goal.scorer == 'Bale':
+	#if goal.scorer == 'Pizarro' or goal.scorer == 'Robben':
 	#	print goal.scorer + " " + str(goal.time) + " " + str(goal.home) + " " + str(goal.ownTeamScore) + " " + str(goal.oppTeamScore) + " " + goal.round
 
 	rs = 0.2*(roundScores[goal.round])
@@ -61,7 +62,7 @@ for goal in goalArray:
 		x = 0.1
 	else:
 		x = 0.0
-	ts = 0.15*(math.exp(-x))
+	ts = 0.25*(math.exp(-x))
 
 	if goal.home:
 		hs = 0.05*0.9
@@ -72,10 +73,10 @@ for goal in goalArray:
 	dbl_GD = float(goalDiff)/10
 
 	if goalDiff >= 0:
-		gs = 0.6*(math.exp(-dbl_GD))
+		gs = 0.5*(math.exp(-dbl_GD))
 	else:
 		dbl_GD = abs(dbl_GD)
-		gs = 0.6*(math.exp(-(dbl_GD))+0.03)
+		gs = 0.5*(math.exp(-(dbl_GD))+0.03)
 
 	totalScore = rs + ts + hs + gs
 
@@ -84,13 +85,19 @@ for goal in goalArray:
 	best[goal.scorer] = max(totalScore, best[goal.scorer])
 
 	if (goal.round == "Finals"):
-		matches[goal.scorer] = max(4, matches[goal.scorer])
-	elif (goal.round == "Semis"):
+		matches[goal.scorer] = max(7, matches[goal.scorer])
+	elif (goal.round == "Semis L1"):
+		matches[goal.scorer] = max(5, matches[goal.scorer])
+	elif (goal.round == "Quarters L1"):
 		matches[goal.scorer] = max(3, matches[goal.scorer])
-	elif (goal.round == "Quarters"):
-		matches[goal.scorer] = max(2, matches[goal.scorer])
-	elif (goal.round == "R16"):
+	elif (goal.round == "R16 L1"):
 		matches[goal.scorer] = max(1, matches[goal.scorer])
+	elif (goal.round == "Semis L2"):
+		matches[goal.scorer] = max(6, matches[goal.scorer])
+	elif (goal.round == "Quarters L2"):
+		matches[goal.scorer] = max(4, matches[goal.scorer])
+	elif (goal.round == "R16 L2"):
+		matches[goal.scorer] = max(2, matches[goal.scorer])
 
 for key in weightedScores.keys():
 	goals[key] = weightedScores[key]/goals[key]

@@ -15,9 +15,9 @@ from requests.exceptions import ConnectionError
 
 def getGoals (rYear):
 
-	rounds = {'r2l1' : ["R16", 8] , 'r2l2' : ["R16", 8], 
-		's0l1' : ["Quarters", 4], 's0l2' : ["Quarters", 4], 
-		't0l1' : ["Semis", 2], 't0l2' : ["Semis", 4],
+	rounds = {'r2l1' : ["R16 L1", 8] , 'r2l2' : ["R16 L2", 8], 
+		's0l1' : ["Quarters L1", 4], 's0l2' : ["Quarters L2", 4], 
+		't0l1' : ["Semis L1", 2], 't0l2' : ["Semis L2", 4],
 		'u0' : ["Finals", 1]}
 
 	goalArray = []
