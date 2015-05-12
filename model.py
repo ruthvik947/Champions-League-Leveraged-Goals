@@ -87,11 +87,11 @@ for goal in goalArray:
 	if (goal.round == "Finals"):
 		matches[goal.scorer] = max(7, matches[goal.scorer])
 	elif (goal.round == "Semis L1"):
-		matches[goal.scorer] = max(5, matches[goal.scorer])
+		matches[goal.scorer] = max(6, matches[goal.scorer])
 	elif (goal.round == "Quarters L1"):
-		matches[goal.scorer] = max(3, matches[goal.scorer])
+		matches[goal.scorer] = max(4, matches[goal.scorer])
 	elif (goal.round == "R16 L1"):
-		matches[goal.scorer] = max(1, matches[goal.scorer])
+		matches[goal.scorer] = max(2, matches[goal.scorer])
 	elif (goal.round == "Semis L2"):
 		matches[goal.scorer] = max(6, matches[goal.scorer])
 	elif (goal.round == "Quarters L2"):
